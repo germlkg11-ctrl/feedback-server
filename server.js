@@ -23,7 +23,28 @@ function handleRequest(request, response) {
     response.end(page);
     return;
   }
+// Serve the page that lists all feedback.
+if (request.method === "GET" && request.url === "/list.html") {
+  const page = fs.readFileSync("list.html");
 
+  response.writeHead(200, {
+    "Content-Type": "text/html; charset=utf-8"
+  });
+
+  response.end(page);
+  return;
+}
+// Send all saved feedback as JSON.
+if (request.method === "GET" && request.url === "/feedback.json") {
+  const entries = readFeedback();
+
+  response.writeHead(200, {
+    "Content-Type": "application/json; charset=utf-8"
+  });
+
+  response.end(JSON.stringify(entries));
+  return;
+}
   // Serve the stylesheet.
 if (request.method === "GET" && request.url === "/style.css") {
   const stylesheet = fs.readFileSync("style.css");
@@ -119,7 +140,15 @@ if (request.method === "GET" && request.url === "/script.js") {
     return;
   }
   // Respond when a route exists but the method is not allowed.
-  const knownRoutes = ["/", "/style.css", "/about", "/feedback"];
+  const knownRoutes = [
+  "/",
+  "/list.html",
+  "/feedback.json",
+  "/style.css",
+  "/script.js",
+  "/about",
+  "/feedback"
+];
 
   if (knownRoutes.includes(request.url)) {
     response.writeHead(405, {
