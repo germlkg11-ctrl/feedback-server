@@ -2,7 +2,13 @@
 
 const http = require("http");
 const fs = require("fs");
+function readFeedback() {
+  if (!fs.existsSync("feedback.json")) {
+    return [];
+  }
 
+  return JSON.parse(fs.readFileSync("feedback.json", "utf8"));
+}
 function handleRequest(request, response) {
   console.log(request.method + " " + request.url);
 
@@ -84,12 +90,29 @@ if (request.method === "GET" && request.url === "/script.js") {
          return;
       }
 
+            const entry = {
+        when: new Date().toISOString().slice(0, 16).replace("T", " "),
+        rating: Number(fields.get("rating")),
+        comment: fields.get("comment")
+      };
+
+      const entries = readFeedback();
+      entries.push(entry);
+
+      fs.writeFileSync(
+        "feedback.json",
+        JSON.stringify(entries, null, 2)
+      );
+
+      console.log(" saved: " + JSON.stringify(entry));
+
       response.writeHead(200, {
         "Content-Type": "text/plain; charset=utf-8"
       });
 
       response.end(
-        "Thank you! Your rating was " + rating + "."
+        "Thank you. Your rating was " + entry.rating + ". That makes " +
+        entries.length + " so far."
       );
     });
 
