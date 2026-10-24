@@ -1,0 +1,200 @@
+:root {
+  --page-background: hsl(216, 12%, 8%);
+  --card-background: hsl(213, 19%, 18%);
+  --muted-text: hsl(217, 12%, 63%);
+  --heading-text: hsl(0, 0%, 100%);
+  --accent: hsl(25, 97%, 53%);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px;
+  background: var(--page-background);
+  color: var(--muted-text);
+  font-family: "Overpass", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.card {
+  width: 100%;
+  max-width: 410px;
+  padding: 32px;
+  background: var(--card-background);
+  border-radius: 20px;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  padding: 16px;
+  display: block;
+  margin-bottom: 28px;
+  background: hsl(213, 19%, 23%);
+  border-radius: 50%;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--heading-text);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+.rating-state {
+  width: 100%;
+}
+
+fieldset {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 0 24px;
+  padding: 0;
+  border: 0;
+}
+
+fieldset input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+fieldset label {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: hsl(213, 19%, 23%);
+  color: var(--muted-text);
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+fieldset label:hover {
+  background: var(--accent);
+  color: var(--page-background);
+}
+
+fieldset input[type="radio"]:checked + label {
+  background: var(--heading-text);
+  color: var(--page-background);
+}
+
+fieldset input[type="radio"]:focus-visible + label {
+  outline: 3px solid hsl(45, 100%, 70%);
+  outline-offset: 4px;
+}
+button[type="submit"] {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--page-background);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background: var(--heading-text);
+  color: var(--page-background);
+}
+
+button[type="submit"]:focus-visible {
+  outline: 3px solid hsl(45, 100%, 70%);
+  outline-offset: 4px;
+}
+.thank-you-state {
+  text-align: center;
+}
+
+.illustration {
+  display: block;
+  width: 150px;
+  max-width: 100%;
+  margin: 0 auto 28px;
+}
+
+.selected {
+  display: inline-block;
+  margin: 0 0 28px;
+  padding: 7px 18px;
+  background: hsl(213, 19%, 23%);
+  color: var(--accent);
+  border-radius: 999px;
+  line-height: 1.4;
+}
+
+.thank-you-state h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--heading-text);
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.thank-you-state p:last-child {
+  margin-bottom: 0;
+}
+/* Lesson 20C: Feedback form states */
+
+form.sending button {
+  opacity: 0.5;
+}
+
+form.sent fieldset,
+form.sent input,
+form.sent button {
+  display: none;
+}
+
+form.sent #status {
+  font-weight: bold;
+}
+
+form.failed #status {
+  color: #b00020;
+  font-weight: bold;
+}

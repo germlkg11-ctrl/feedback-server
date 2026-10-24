@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback card</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap"
+  rel="stylesheet"
+>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main>
+    <div class="card">
+
+  <form
+  class="rating-state"
+  id="feedback-form"
+  method="post"
+  action="/feedback"
+>
+
+    <img src="./images/icon-star.svg" alt="" class="icon">
+
+    <h1>How did we do?</h1>
+
+    <p>
+      Please let us know how we did with your support request.
+      All feedback is appreciated to help us improve our offering!
+    </p>
+
+    <fieldset>
+      <legend class="visually-hidden">
+        Rate your experience from 1 to 5
+      </legend>
+
+      <input type="radio" name="rating" value="1" id="rating-1" required>
+      <label for="rating-1">1</label>
+
+      <input type="radio" name="rating" value="2" id="rating-2">
+      <label for="rating-2">2</label>
+
+      <input type="radio" name="rating" value="3" id="rating-3">
+      <label for="rating-3">3</label>
+
+      <input type="radio" name="rating" value="4" id="rating-4">
+      <label for="rating-4">4</label>
+
+      <input type="radio" name="rating" value="5" id="rating-5">
+      <label for="rating-5">5</label>
+    </fieldset>
+<label for="comment">Your comment (optional):</label>
+
+<textarea
+  id="comment"
+  name="comment"
+  rows="3"
+></textarea>
+    
+
+<button type="submit">Submit</button>
+
+
+<p id="status" aria-live="polite"></p>
+
+    
+
+  </form>
+
+  </form>
+
+  <section class="thank-you-state" hidden>
+
+    <img
+      src="./images/illustration-thank-you.svg"
+      alt=""
+      class="illustration"
+    >
+
+    <p class="selected">
+      You selected <span id="selected-rating"></span> out of 5
+    </p>
+
+    <h2>Thank you!</h2>
+
+    <p>
+      We appreciate you taking the time to give a rating.
+      If you ever need more support, don’t hesitate to get in touch!
+    </p>
+
+  </section>
+
+</div>
+
+  </main>
+
+  <footer>
+    <p>Built by Germain Legre</p>
+  </footer>
+<script src="script.js"></script>
+</body>
+</html>
